@@ -1,29 +1,36 @@
+// Material design framework
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
+// The main app widget, called first
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // This is the build tree for the app, this widget contains the app container
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'University of Idaho History',
+      // The theme data for the app, inherited by all children
       theme: ThemeData(
           primarySwatch:
               const Color.fromRGBO(241, 179, 0, 1.0).asMaterialColor),
-      home: const MyHomePage(title: 'Historical Photos'),
+      // This is the main screen for the app
+      home: const MyHomePage(title: 'Historical Photos 2'),
     );
   }
 }
 
 // A stateful widget that represents our main screen, can be moved to other files.
 class MyHomePage extends StatefulWidget {
+  // The widget's constructor, called when the widget is created
   const MyHomePage({super.key, required this.title});
 
+  // The title is passed in from the constructor
   final String title;
 
   @override
@@ -46,39 +53,45 @@ class _MyHomePageState extends State<MyHomePage> {
   // Our UI build tree, called when the state needs refreshed
   @override
   Widget build(BuildContext context) {
+    // The scaffold is the main container for the screen
     return Scaffold(
+        // The app bar is the top bar
         appBar: AppBar(
+          // The title is passed in from the constructor
           title: Text(widget.title),
         ),
-        body: Container(child: bodyWidgets()));
+        body: Container(
+            child: ListView(
+                children: [bodyWidgets(), bodyWidgets(), bodyWidgets()])));
   }
 
+  // The body of the app, contains the main content
   bodyWidgets() {
-    return Column(children: const [
-      // SizedBox(
-      //     height: 300,
-      //     width: double.infinity,
-      //     child: Padding(
-      //       padding: const EdgeInsets.all(10.0),
-      //       child: Container(color: Colors.red)),
-      //     ),
-      // const Padding(
-      //   padding: EdgeInsets.all(10.0),
-      //   child: Text(
-      //     "Title",
-      //     textAlign: TextAlign.center,
-      //     style: TextStyle(
-      //         color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
-      //   ),
-      // ),
-      // const Padding(
-      //   padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
-      //   child: Text(
-      //     "Description",
-      //     textAlign: TextAlign.center,
-      //     style: TextStyle(color: Colors.black26, fontSize: 20),
-      //   ),
-      // ),
+    return Column(children: [
+      SizedBox(
+        height: 300,
+        width: double.infinity,
+        child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(color: Color.fromARGB(255, 196, 119, 113))),
+      ),
+      const Padding(
+        padding: EdgeInsets.all(10.0),
+        child: Text(
+          "Title",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+      ),
+      const Padding(
+        padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 30.0),
+        child: Text(
+          "Description",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black26, fontSize: 20),
+        ),
+      ),
     ]);
   }
 }
